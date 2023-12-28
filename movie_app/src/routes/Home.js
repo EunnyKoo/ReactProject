@@ -1,4 +1,4 @@
-import './Home.css';
+import './styles/Home.css';
 import React from 'react';
 import axios from 'axios';
 import Movie from '../components/Movie';

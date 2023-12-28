@@ -1,6 +1,6 @@
 // Write.js
 import React from 'react';
-import './Write.css';
+import './styles/Write.css';
 
 export default function Write() {
   return (
