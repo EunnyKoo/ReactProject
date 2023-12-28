@@ -5,9 +5,10 @@ import './Navigation.css';
 export default function Navigation() {
     return(
         <div className="nav">
+            <Link to="/">Sandwiches</Link>
+            <Link to="/write">Share Your Sandwich</Link>
             <Link to="/about">About</Link>
-            <Link to="/">Home</Link>
-            <Link to="/write">Write</Link>
+            <Link to="/myPage">My Sandwich Box</Link>
         </div>
     )
 }

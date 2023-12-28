@@ -6,6 +6,7 @@ import Home from './routes/Home';
 import Navigation from './components/Navigation';
 import Detail from './routes/Detail';
 import Write from './routes/Write';
+import MyPage from './routes/MyPage';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/movie-detail" element={<Detail />} />
         <Route path="/write" element={<Write />} />
+        <Route path="/mypage" element={<MyPage />} />
       </Routes>
     </HashRouter>
   );
