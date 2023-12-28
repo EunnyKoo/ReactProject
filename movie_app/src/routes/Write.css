@@ -1,0 +1,64 @@
+/* Write.css */
+.write-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .write-title {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .write-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .write-form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #555;
+  }
+  
+  input,
+  textarea {
+    padding: 12px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    transition: border-color 0.3s;
+    font-family: 'Noto Sans', sans-serif;
+  }
+  
+  input:focus,
+  textarea:focus {
+    border-color: #4caf50;
+    outline: none;
+  }
+  
+  .write-submit-button {
+    background-color: #4caf50;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s;
+  }
+  
+  .write-submit-button:hover {
+    background-color: #45a049;
+  }
+  
