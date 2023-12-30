@@ -1,55 +1,63 @@
+// Home.js
+
 import './styles/Home.css';
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import Sandwich from '../components/Sandwich';
+import SearchBar from '../components/SearchBar';
 
-class Home extends React.Component {
-  state = {
-    isLoading: true,
-    sandwiches: [], 
-  };
+const Home = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [sandwiches, setSandwiches] = useState([]);
+  const [filteredSandwiches, setFilteredSandwiches] = useState([]);
 
-  getSandwiches = async () => {
+  const getSandwiches = async () => {
     try {
       const response = await axios.get('http://localhost:5000/sandwiches');
-      this.setState({ sandwiches: response.data, isLoading: false });
+      setSandwiches(response.data);
+      setFilteredSandwiches(response.data);
+      setIsLoading(false);
     } catch (error) {
       console.error('Error fetching sandwiches:', error);
-      this.setState({ isLoading: false });
+      setIsLoading(false);
     }
   };
 
-  componentDidMount() {
-    this.getSandwiches();
-  }
-
-  render() {
-    const { isLoading, sandwiches } = this.state;
-    return (
-      <section className="container">
-        {isLoading ? (
-          <div className="loader">
-            <span className="loader__text">Loading...</span>
-          </div>
-        ) : (
-          <div className="sandwiches">
-            {sandwiches.map((sandwich) => (
-              <Sandwich
-                key={sandwich.id}
-                id={sandwich.id}
-                title={sandwich.title}
-                cafeLocation={sandwich.cafeLocation}
-                summary={sandwich.summary}
-                poster={sandwich.poster}
-                ingredients={sandwich.ingredients}
-              />
-            ))}
-          </div>
-        )}
-      </section>
+  const handleSearch = (searchTerm) => {
+    const filtered = sandwiches.filter((sandwich) =>
+      sandwich.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
-  }
-}
+    setFilteredSandwiches(filtered);
+  };
 
+  React.useEffect(() => {
+    getSandwiches();
+  }, []);
+
+  return (
+    <section className="container">
+      <SearchBar onSearch={handleSearch} />
+      {isLoading ? (
+        <div className="loader">
+          <span className="loader__text">Loading...</span>
+        </div>
+      ) : (
+        <div className="sandwiches">
+          {filteredSandwiches.map((sandwich) => (
+            <Sandwich
+              key={sandwich.id}
+              id={sandwich.id}
+              title={sandwich.title}
+              cafeLocation={sandwich.cafeLocation}
+              summary={sandwich.summary}
+              poster={sandwich.poster}
+              ingredients={sandwich.ingredients}
+            />
+          ))}
+        </div>
+      )}
+    </section>
+  );
+};
 
 export default Home;
