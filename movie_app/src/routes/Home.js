@@ -13,7 +13,7 @@ const Home = () => {
 
   const getSandwiches = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/sandwiches');
+      const response = await axios.get('http://localhost:5001/sandwiches');
       setSandwiches(response.data);
       setFilteredSandwiches(response.data);
       setIsLoading(false);

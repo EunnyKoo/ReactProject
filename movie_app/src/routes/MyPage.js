@@ -5,21 +5,17 @@ import './styles/Write.css';
 export default function MyPage() {
   return (
     <div className="write-container">
-      <h1 className="write-title">🥪Share Your Sandwich Info🥪</h1>
+      <h1 className="write-title">Do you want to collect the sandwiches?💕</h1>
       <form className="write-form">
         <div className="write-form-group">
-          <label htmlFor="title">Title:</label>
-          <input type="text" id="title" name="title" placeholder="Enter your blog post title" />
+          <label htmlFor="title">ID</label>
+          <input type="text" id="title" name="title" placeholder="Enter your id" />
         </div>
         <div className="write-form-group">
-          <label htmlFor="tags">Location:</label>
-          <input type="text" id="tags" name="tags" placeholder="Enter the location" />
+          <label htmlFor="tags">PASSWORD</label>
+          <input type="text" id="tags" name="tags" placeholder="Enter the password" />
         </div>
-        <div className="write-form-group">
-          <label htmlFor="content">Content:</label>
-          <textarea id="content" name="content" placeholder="Start writing your blog post..."></textarea>
-        </div>
-        <button type="submit" className="write-submit-button">Publish</button>
+        <button type="submit" className="write-submit-button">LOGIN</button>
       </form>
     </div>
   );

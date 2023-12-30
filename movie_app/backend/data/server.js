@@ -1,9 +1,12 @@
 const express = require('express');
+const nodemailer = require('nodemailer');
+const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5001;
 
 app.use(cors());
+app.use(bodyParser.json());
 
 const sandwiches = [
   { id: 1, title: 'Carrot Sandwich', cafeLocation: 'Cafe Rhubarb', summary: 'Indulge in the vibrant flavors of Cafe Rhubarb\'s Carrot Sandwich. This delectable creation features fresh carrots, tangy mustard, velvety hummus, and soft bread for a delightful culinary experience.', poster: '/sandwich-images/carrot-sandwich.jpeg', ingredients: ['carrot', 'mustard', 'hummus', 'bread'] },
@@ -30,6 +33,36 @@ const sandwiches = [
 
 app.get('/sandwiches', (req, res) => {
   res.json(sandwiches); 
+});
+
+app.post('/send-email', (req, res) => {
+  const { title, tags, content } = req.body;
+
+  //user, pass 꼭 지우고 github에 추가할 것^^
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: '내아이디@gmail.com',
+      pass: '내비밀번호',
+    },
+  });
+
+  const mailOptions = {
+    from: '내아이디@gmail.com',
+    to: '내아이디@gmail.com',
+    subject: `New Sandwich Information: ${title}`,
+    text: `Location: ${tags}\n\n${content}`,
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
+    } else {
+      console.log('Email sent: ' + info.response);
+      res.status(200).send('Email Sent');
+    }
+  });
 });
 
 app.listen(PORT, () => {
