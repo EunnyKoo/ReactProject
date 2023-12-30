@@ -1,30 +1,30 @@
 import './styles/Home.css';
 import React from 'react';
 import axios from 'axios';
-import Movie from '../components/Movie';
+import Sandwich from '../components/Sandwich';
 
 class Home extends React.Component {
   state = {
     isLoading: true,
-    movies: [],
+    sandwiches: [], 
   };
 
-  getMovies = async () => {
-    const {
-      data: {
-        data: { movies },
-      },
-    } = await axios.get('https://yts-proxy.now.sh/list_movies.json?sort_by=rating');
-    this.setState({ movies, isLoading: false });
+  getSandwiches = async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/sandwiches');
+      this.setState({ sandwiches: response.data, isLoading: false });
+    } catch (error) {
+      console.error('Error fetching sandwiches:', error);
+      this.setState({ isLoading: false });
+    }
   };
 
   componentDidMount() {
-    // 영화 데이터 로딩!
-    this.getMovies();
+    this.getSandwiches();
   }
 
   render() {
-    const { isLoading, movies } = this.state;
+    const { isLoading, sandwiches } = this.state;
     return (
       <section className="container">
         {isLoading ? (
@@ -32,16 +32,16 @@ class Home extends React.Component {
             <span className="loader__text">Loading...</span>
           </div>
         ) : (
-          <div className="movies">
-            {movies.map((movie) => (
-              <Movie
-                key={movie.id}
-                id={movie.id}
-                year={movie.year}
-                title={movie.title}
-                summary={movie.summary}
-                poster={movie.medium_cover_image}
-                genres={movie.genres}
+          <div className="sandwiches">
+            {sandwiches.map((sandwich) => (
+              <Sandwich
+                key={sandwich.id}
+                id={sandwich.id}
+                title={sandwich.title}
+                cafeLocation={sandwich.cafeLocation}
+                summary={sandwich.summary}
+                poster={sandwich.poster}
+                ingredients={sandwich.ingredients}
               />
             ))}
           </div>
@@ -50,5 +50,6 @@ class Home extends React.Component {
     );
   }
 }
+
 
 export default Home;
