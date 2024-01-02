@@ -7,6 +7,7 @@ import Navigation from './components/Navigation';
 import Detail from './routes/Detail';
 import Write from './routes/Write';
 import MyPage from './routes/MyPage';
+import Register from './routes/Register';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/sandwich-detail" element={<Detail />} />
         <Route path="/write" element={<Write />} />
         <Route path="/mypage" element={<MyPage />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </HashRouter>
   );

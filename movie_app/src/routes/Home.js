@@ -1,5 +1,3 @@
-// Home.js
-
 import './styles/Home.css';
 import React, { useState } from 'react';
 import axios from 'axios';
