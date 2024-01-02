@@ -11,7 +11,7 @@
     font-weight: 300;
 }
 
-.about__container span:first-child {
+.about__container p:first-child {
     font-size: 20px;
 }
 

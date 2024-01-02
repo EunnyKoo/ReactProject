@@ -5,13 +5,12 @@ import './styles/Detail.css';
 
 const Detail = () => {
   const [sandwichDetails, setSandwichDetails] = useState({});
-  const { title, cafeLocation, summary, poster, ingredients } = sandwichDetails;
+  const { title, cafeLocation, summary, poster, ingredients, rating } = sandwichDetails;
   const { id } = useParams();
 
   useEffect(() => {
     axios.get(`http://localhost:5001/sandwiches/${id}`)
       .then(response => {
-        console.log(response.data);
         setSandwichDetails(response.data);
       })
       .catch(error => {
@@ -24,9 +23,9 @@ const Detail = () => {
       {sandwichDetails && (
         <>
           <h2>{title}</h2>
-          <p>{cafeLocation}</p>
+          <p>⭐{rating} / {cafeLocation}</p>
           <img src={poster} alt={title} title={title} />
-          <p>Ingredients: { ingredients && ingredients.join(', ')}</p>
+          <p>🥗Ingredients: { ingredients && ingredients.join(', ')}</p>
           <p>{summary}</p>
         </>
       )}

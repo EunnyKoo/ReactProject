@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-import { HashRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom';
 import About from './routes/About';
 import Home from './routes/Home';
 import Navigation from './components/Navigation';
@@ -12,7 +12,7 @@ import MyPage from './routes/MyPage';
 
 function App() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <Navigation />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -23,7 +23,7 @@ function App() {
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/register" element={<Register />} />
       </Routes>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 

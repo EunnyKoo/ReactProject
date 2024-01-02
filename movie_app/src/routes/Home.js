@@ -50,6 +50,7 @@ const Home = () => {
               summary={sandwich.summary}
               poster={sandwich.poster}
               ingredients={sandwich.ingredients}
+              rating={sandwich.rating}
             />
           ))}
         </div>
