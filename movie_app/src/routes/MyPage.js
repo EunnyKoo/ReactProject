@@ -12,7 +12,7 @@ export default function MyPage() {
           <input type="text" id="title" name="title" placeholder="Enter your id" />
         </div>
         <div className="write-form-group">
-          <label htmlFor="tags">PASSWORD</label>
+          <label htmlFor="tags">Password</label>
           <input type="text" id="tags" name="tags" placeholder="Enter the password" />
         </div>
         <button type="submit" className="write-submit-button">LOGIN</button>

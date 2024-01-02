@@ -1,33 +1,34 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-class Detail extends React.Component {
-    componentDidMount() {
-        const { location, history } = this.props;
-        // location이 정의되어 있지 않거나 state가 정의되어 있지 않다면 '/'로 이동
-        if (!location || !location.state || !history) {
-            // fallback: history가 정의되어 있지 않은 경우에는 window.location.href로 이동
-            window.location.href = '/';
-        }
-    }
+const Detail = ({ match }) => {
+  const [sandwichDetails, setSandwichDetails] = useState(null);
 
-    render() {
-        const { location } = this.props;
-        if (location && location.state) {
-            const { title, cafeLocation, summary, poster, ingredients } = location.state;
+  useEffect(() => {
+    const { id } = match.params;
+    console.log("ID:", id);
 
-            return (
-                <div>
-                    <h2>{title}</h2>
-                    <p>Cafe Location: {cafeLocation}</p>
-                    <p>Summary: {summary}</p>
-                    <p>Ingredients: {ingredients.join(', ')}</p>
-                    <img src={poster} alt={title} title={title} />
-                </div>
-            );
-        } else {
-            return null;
-        }
-    }
-}
+    axios.get(`http://localhost:5001/sandwiches/${id}`)
+      .then(response => {
+        console.log(response.data);
+        setSandwichDetails(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching sandwich details:', error);
+      });
+  }, [match.params]); // match.params를 의존성 배열에 추가
+
+  const { title, cafeLocation, summary, poster, ingredients } = sandwichDetails;
+
+  return (
+    <div>
+      <h2>{title}</h2>
+      <p>Cafe Location: {cafeLocation}</p>
+      <p>Summary: {summary}</p>
+      <p>Ingredients: {ingredients.join(', ')}</p>
+      <img src={poster} alt={title} title={title} />
+    </div>
+  );
+};
 
 export default Detail;

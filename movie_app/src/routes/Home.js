@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Sandwich from '../components/Sandwich';
 import SearchBar from '../components/SearchBar';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -42,6 +43,7 @@ const Home = () => {
       ) : (
         <div className="sandwiches">
           {filteredSandwiches.map((sandwich) => (
+            <Link to={`/sandwich-detail/${sandwich.id}`} className='sandwichDetail-link'>
             <Sandwich
               key={sandwich.id}
               id={sandwich.id}
@@ -51,6 +53,7 @@ const Home = () => {
               poster={sandwich.poster}
               ingredients={sandwich.ingredients}
             />
+          </Link>
           ))}
         </div>
       )}
