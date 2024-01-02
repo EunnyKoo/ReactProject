@@ -1,4 +1,3 @@
-/* Write.css */
 .write-container {
     max-width: 800px;
     margin: 50px auto;
@@ -6,11 +5,12 @@
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
-  
+    
   .write-title {
     font-size: 36px;
     margin-bottom: 20px;
-    color: #333;
+    color: darkgreen;
+    text-align: center;
   }
   
   .write-form {

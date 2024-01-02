@@ -1,4 +1,3 @@
-// Write.js
 import React, { useState } from 'react';
 import './styles/Write.css';
 import axios from 'axios';
