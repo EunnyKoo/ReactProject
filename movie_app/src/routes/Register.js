@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import './styles/Write.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function Register() {
+  const navigate = useNavigate();
   const [isModalOpen, setModalOpen] = useState(false);
   const [userId, setUserId] = useState('');
   const [userPwd, setUserPwd] = useState('');
@@ -22,9 +24,24 @@ export default function Register() {
       alert("Write your password");
       return;
     }
-
-    if (userPwd != userConfirmPwd) {
+    if (userPwd !== userConfirmPwd) {
       alert("Confirm your password");
+      return;
+    }
+    if (userId.length < 5) {
+      alert("ID should be at least 5 characters long");
+      return;
+    }
+    if (userNickname.length < 5) {
+      alert("Nickname should be at least 5 characters long");
+      return;
+    }
+    if (userPwd.length < 8) {
+      alert("Password should be at least 8 characters long");
+      return;
+    }
+    if (!/[a-z]/.test(userPwd) || !/[A-Z]/.test(userPwd) || !/\d/.test(userPwd)) {
+      alert("Password should contain at least one lowercase letter, one uppercase letter, and one number");
       return;
     }
 
@@ -33,7 +50,14 @@ export default function Register() {
   };
 
   const closeModal = () => {
+    setUserId('');
+    setUserPwd('');
+    setUserConfirmPwd('');
+    setUserNickname('');
+
     setModalOpen(false);
+
+    navigate('/MyPage');
   };
 
   return (
@@ -46,7 +70,7 @@ export default function Register() {
             type="text"
             id="title"
             name="title"
-            placeholder="Enter your id"
+            placeholder="ID must be at least 5 characters long"
             value={userId}
             onChange={(e) => setUserId(e.target.value)}
           />
@@ -68,7 +92,7 @@ export default function Register() {
             type="password"
             id="tags"
             name="tags"
-            placeholder="Enter the password"
+            placeholder="Password must be at least 8 characters long and include at least one lowercase letter, one uppercase letter, and one number."
             value={userPwd}
             onChange={(e) => setUserPwd(e.target.value)}
           />

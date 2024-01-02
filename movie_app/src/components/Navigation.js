@@ -8,7 +8,7 @@ export default function Navigation() {
             <Link to="/">Sandwiches</Link>
             <Link to="/write">Share Your Sandwich</Link>
             <Link to="/about">About</Link>
-            <Link to="/myPage">My Sandwich Box</Link>
+            <Link to="/login">My Sandwich Box</Link>
         </div>
     )
 }

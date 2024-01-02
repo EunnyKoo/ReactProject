@@ -8,7 +8,7 @@ export default function Sandwich({id, title, cafeLocation, summary, poster, ingr
         <div className="sandwich">
             <Link 
                 to={{
-                    pathname: '/sandwich-detail',
+                    pathname: `/sandwich-detail/${id}`,
                     state: {id, title, cafeLocation, summary, poster, ingredients},
                 }}
             >
