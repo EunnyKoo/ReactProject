@@ -42,3 +42,75 @@
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
+
+  .ingredients-p{
+    text-align: center;
+  }
+
+  .detail-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .detail-container h2 {
+    color: #333;
+  }
+  
+  .detail-container p {
+    color: #555;
+  }
+  
+  .detail-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  
+  .detail-container h3 {
+    color: #333;
+  }
+  
+  .detail-container ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .comment-textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: vertical;
+  }
+  
+  .comment-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .comment-btn:hover {
+    background-color: #45a049;
+  }
+
+  .comment-list-item {
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    padding: 10px;
+  }
+  
+  .comment-text {
+    color: #333;
+  }

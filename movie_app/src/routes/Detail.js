@@ -5,10 +5,13 @@ import './styles/Detail.css';
 
 const Detail = () => {
   const [sandwichDetails, setSandwichDetails] = useState({});
+  const [comments, setComments] = useState([]);
+  const [newComment, setNewComment] = useState('');
   const { title, cafeLocation, summary, poster, ingredients, rating } = sandwichDetails;
   const { id } = useParams();
 
   useEffect(() => {
+    // Fetch sandwich details
     axios.get(`http://localhost:5001/sandwiches/${id}`)
       .then(response => {
         setSandwichDetails(response.data);
@@ -16,7 +19,30 @@ const Detail = () => {
       .catch(error => {
         console.error('Error fetching sandwich details:', error);
       });
-  }, []); 
+
+    // Fetch comments
+    axios.get(`http://localhost:5001/comments/${id}`)
+      .then(response => {
+        setComments(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching comments:', error);
+      });
+  }, [id]);
+
+  const handleCommentSubmit = () => {
+    // Submit new comment to the backend
+    axios.post(`http://localhost:5001/comments/${id}`, { comment: newComment })
+      .then(response => {
+        // Update the local comments state with the new comment
+        setComments([...comments, response.data]);
+        // Clear the input field
+        setNewComment('');
+      })
+      .catch(error => {
+        console.error('Error submitting comment:', error);
+      });
+  };
 
   return (
     <div className="detail-container">
@@ -24,9 +50,27 @@ const Detail = () => {
         <>
           <h2>{title}</h2>
           <p>⭐{rating} / {cafeLocation}</p>
-          <img src={poster} alt={title} title={title} />
-          <p>🥗Ingredients: { ingredients && ingredients.join(', ')}</p>
           <p>{summary}</p>
+          <img src={poster} alt={title} title={title} />
+          <p className='ingredients-p'>🥗Ingredients: {ingredients && ingredients.join(', ')}</p>
+          
+          <div>
+            <h3>Comments</h3>
+            <ul className="comment-list">
+              {comments.map(comment => (
+                <li key={comment.id} className="comment-list-item">
+                  <span className="comment-text">{comment.text}</span>
+                </li>
+              ))}
+            </ul>
+            <textarea
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)}
+              placeholder="Add your comment..."
+              className='comment-textarea'
+            />
+            <button onClick={handleCommentSubmit} className='comment-btn'>Submit Comment</button>
+          </div>
         </>
       )}
     </div>
