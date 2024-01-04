@@ -18,7 +18,7 @@ export default function LogIn() {
 
   return (
     <div className="write-container">
-      <h1 className="write-title">Wanna know more about this website?💕</h1>
+      <h1 className="write-title">Join the Monthly Newsletter💕</h1>
       <form className="write-form" onSubmit={handleSubmit}>
         <div className="write-form-group">
           <label htmlFor="title">ID</label>

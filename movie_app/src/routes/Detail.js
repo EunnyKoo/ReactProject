@@ -11,7 +11,6 @@ const Detail = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    // Fetch sandwich details
     axios.get(`http://localhost:5001/sandwiches/${id}`)
       .then(response => {
         setSandwichDetails(response.data);
@@ -20,7 +19,6 @@ const Detail = () => {
         console.error('Error fetching sandwich details:', error);
       });
 
-    // Fetch comments
     axios.get(`http://localhost:5001/comments/${id}`)
       .then(response => {
         setComments(response.data);
@@ -31,12 +29,9 @@ const Detail = () => {
   }, [id]);
 
   const handleCommentSubmit = () => {
-    // Submit new comment to the backend
     axios.post(`http://localhost:5001/comments/${id}`, { comment: newComment })
       .then(response => {
-        // Update the local comments state with the new comment
         setComments([...comments, response.data]);
-        // Clear the input field
         setNewComment('');
       })
       .catch(error => {

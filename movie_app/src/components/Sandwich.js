@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import './Sandwich.css';
+import './styles/Sandwich.css';
 import {Link} from 'react-router-dom';
 
 export default function Sandwich({id, title, cafeLocation, summary, poster, ingredients, rating}) {

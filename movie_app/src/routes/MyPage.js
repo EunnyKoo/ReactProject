@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './styles/MyPage.css';
+import Chart from '../components/Chart';
 
 const MyPage = () => {
   const [monthlySandos, setMonthlySandos] = useState([]);
+  const [bestSandos, setBestSandos] = useState([]);
 
   useEffect(() => {
     const getMonthlySandos = async () => {
@@ -17,10 +19,23 @@ const MyPage = () => {
     getMonthlySandos();
   }, []);
 
+  useEffect(() => {
+    const getBestSandos = async () => {
+      try {
+        const response = await axios.get('http://localhost:5001/sandwiches');
+        setBestSandos(response.data);
+      } catch (error) {
+        console.log('Error fetching monthly sandwiches:', error);
+      }
+    };
+    getBestSandos();
+  }, []);
+
   return (
     <div className="mypage-container">
-      <h1 className="mypage-title">Eun Koo's Sandwich Box🚀</h1>
+      <h1 className="mypage-title">My Sandwich Box🚀</h1>
       <p>This is Eun Koo's monthly sandwich box only open to registered viewers! 🤗❤️🥪</p>
+      <div className="this-month-div">January 2024</div>
       <div className="dashboard-options">
         <div className="card-container">
           {monthlySandos.map(post => (
@@ -32,6 +47,13 @@ const MyPage = () => {
               <p>{post.summary}</p>
             </div>
           ))}
+        </div>
+        <br />
+        <div className="graph-container">
+        <div className="this-month-div">Which sandwich got the highest rating?</div>
+          <div className="card">
+            <Chart data={bestSandos} />
+          </div>
         </div>
       </div>
     </div>
