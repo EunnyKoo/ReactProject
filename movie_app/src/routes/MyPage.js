@@ -34,6 +34,7 @@ const MyPage = () => {
   return (
     <div className="mypage-container">
       <h1 className="mypage-title">My Sandwich Box🚀</h1>
+      <a href='/' className='logout-a'>Logout</a>
       <p>This is Eun Koo's monthly sandwich box only open to registered viewers! 🤗❤️🥪</p>
       <div className="this-month-div">January 2024</div>
       <div className="dashboard-options">
