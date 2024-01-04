@@ -7,10 +7,9 @@ export default function Register() {
   const [isModalOpen, setModalOpen] = useState(false);
   const [userId, setUserId] = useState('');
   const [userPwd, setUserPwd] = useState('');
-  const [userConfirmPwd, setUserConfirmPwd] = useState('');
   const [userNickname, setUserNickname] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!userId.trim()) {
       alert("Write your ID");
@@ -24,35 +23,56 @@ export default function Register() {
       alert("Write your password");
       return;
     }
-    if (userPwd !== userConfirmPwd) {
-      alert("Confirm your password");
-      return;
+ 
+    // if (userId.length < 5) {
+    //   alert("ID should be at least 5 characters long");
+    //   return;
+    // }
+    // if (userNickname.length < 5) {
+    //   alert("Nickname should be at least 5 characters long");
+    //   return;
+    // }
+    // if (userPwd.length < 6) {
+    //   alert("Password should be at least 6 characters long");
+    //   return;
+    // }
+    // if (!/[A-Z]/.test(userPwd) || !/\d/.test(userPwd)) {
+    //   alert("Password should contain at least one uppercase letter, and one number");
+    //   return;
+    // }
+     
+    try {
+      const response = await fetch('http://localhost:5001/api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id: userId, nickname: userNickname, password: userPwd }),
+      });
+    
+      if (response.ok) {
+        const data = await response.json();
+        // 성공(2xx)인 경우에만 모달 열기
+        setModalOpen(true);
+      } else {
+        // HTTP 상태 코드가 성공(2xx)이 아닌 경우
+        try {
+          const errorData = await response.json();
+          alert(`Registration failed: ${errorData.error || 'Unknown error'}`);
+        } catch (error) {
+          // JSON으로 파싱할 수 없는 경우 (HTML 등의 형식)
+          alert(`Registration failed: ${response.statusText}`);
+        }
+      }
+    } catch (error) {
+      console.error('Registration request failed:', error);
+      alert('Registration failed. Please try again later.');
     }
-    if (userId.length < 5) {
-      alert("ID should be at least 5 characters long");
-      return;
-    }
-    if (userNickname.length < 5) {
-      alert("Nickname should be at least 5 characters long");
-      return;
-    }
-    if (userPwd.length < 6) {
-      alert("Password should be at least 6 characters long");
-      return;
-    }
-    if (!/[A-Z]/.test(userPwd) || !/\d/.test(userPwd)) {
-      alert("Password should contain at least one uppercase letter, and one number");
-      return;
-    }
-
-    // 모달 열기
-    setModalOpen(true);
   };
 
   const closeModal = () => {
     setUserId('');
     setUserPwd('');
-    setUserConfirmPwd('');
     setUserNickname('');
 
     setModalOpen(false);
@@ -95,17 +115,6 @@ export default function Register() {
             placeholder="Password must be at least 6 characters including at least one uppercase letter, and one number"
             value={userPwd}
             onChange={(e) => setUserPwd(e.target.value)}
-          />
-        </div>
-        <div className="write-form-group">
-          <label htmlFor="tags">Confirm Password</label>
-          <input
-            type="password"
-            id="tags"
-            name="tags"
-            placeholder="Enter the password"
-            value={userConfirmPwd}
-            onChange={(e) => setUserConfirmPwd(e.target.value)}
           />
         </div>
         <button type="submit" className="write-submit-button">

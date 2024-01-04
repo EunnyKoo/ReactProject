@@ -128,6 +128,24 @@ app.post('/api/login', (req, res) => {
   );
 });
 
+app.post('/api/register', (req, res) => {
+  const { id, nickname, password } = req.body;
+  console.log('Received register request:', id, nickname, password);
+
+  conn.query(
+    'INSERT INTO user (id, nickname, password) VALUES (?, ?, ?)', 
+    [id, nickname, password],
+    (err, result) => {
+      if (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Internal Server Error' });
+        return;
+      }
+      res.json({ registered: true });
+    }
+  );
+});
+
 app.get('/monthlySandos', (req, res) => {
   res.json(monthlySandos); 
 });
