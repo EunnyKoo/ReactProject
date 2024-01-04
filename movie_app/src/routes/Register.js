@@ -36,12 +36,12 @@ export default function Register() {
       alert("Nickname should be at least 5 characters long");
       return;
     }
-    if (userPwd.length < 8) {
-      alert("Password should be at least 8 characters long");
+    if (userPwd.length < 6) {
+      alert("Password should be at least 6 characters long");
       return;
     }
-    if (!/[a-z]/.test(userPwd) || !/[A-Z]/.test(userPwd) || !/\d/.test(userPwd)) {
-      alert("Password should contain at least one lowercase letter, one uppercase letter, and one number");
+    if (!/[A-Z]/.test(userPwd) || !/\d/.test(userPwd)) {
+      alert("Password should contain at least one uppercase letter, and one number");
       return;
     }
 
@@ -92,7 +92,7 @@ export default function Register() {
             type="password"
             id="tags"
             name="tags"
-            placeholder="Password must be at least 8 characters long and include at least one lowercase letter, one uppercase letter, and one number."
+            placeholder="Password must be at least 6 characters including at least one uppercase letter, and one number"
             value={userPwd}
             onChange={(e) => setUserPwd(e.target.value)}
           />
