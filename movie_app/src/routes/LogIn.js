@@ -7,12 +7,27 @@ export default function LogIn() {
   const [userPwd, setUserPwd] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (userId === 'eun' && userPwd === 'koo') {
-      navigate('/mypage');
-    } else {
-      alert('Invalid credentials. Please try again.');
+    try {
+      const response = await fetch('http://localhost:5001/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id: userId, password: userPwd }),
+      });
+        
+      const data = await response.json();
+  
+      if (data.authenticated) {
+        navigate('/mypage');
+      } else {
+        alert('Invalid credentials. Please try again.');
+      }
+    } catch (error) {
+      console.error('Login request failed:', error);
+      alert('Login failed. Please try again later.');
     }
   };
 

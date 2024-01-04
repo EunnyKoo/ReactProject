@@ -97,6 +97,37 @@ const monthlySandos = [
   { id: 2, title: `Introducing Overseas Sando`, name:'Hong Kong Shake Shack', cafeLocation: 'Shop 4018, Podium Level 4, ifc mall, 8 Finance Street',  summary: `Located at Central Waterfront, ifc is one of Hong Kong's leading business and leisure destinations. With more than 200 stores featuring international premier brands, flagship stores and unique concept stores, ifc mall is the place to go for an extraordinary shopping, dining and entertainment experience. It is not only a hot tourist spot in Hong Kong, but also an iconic world-class shopping mall.`, poster: '/sandwich-images/hawaiianJack.jpeg', },
 ];
 
+const mysql = require("mysql");
+
+const conn = mysql.createPool({
+	host: 'localhost',   
+	user: 'user',                           
+	password: '55555!',                     
+	database: 'react_proj',                
+})
+
+app.post('/api/login', (req, res) => {
+  const { id, password } = req.body;
+  console.log('Received login request:', id, password);
+
+  conn.query(
+    'SELECT * FROM user WHERE id = ? AND password = ?', 
+    [id, password],
+    (err, rows) => {
+      if (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Internal Server Error' });
+        return;
+      }
+      if (rows.length > 0) {
+        res.json({ authenticated: true });
+      } else {
+        res.json({ authenticated: false });
+      }
+    }
+  );
+});
+
 app.get('/monthlySandos', (req, res) => {
   res.json(monthlySandos); 
 });
