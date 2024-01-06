@@ -3,13 +3,13 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'rec
 
 const Chart = ({ data }) => {
   return (
-    <BarChart width={600} height={300} data={data}>
+    <BarChart width={650} height={300} data={data}>
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey="title" />
       <YAxis domain={[0, 5]} />
       <Tooltip />
       <Legend />
-      <Bar dataKey="rating" fill="#8884d8" />
+      <Bar dataKey="rating" fill="#09ba3c" />
     </BarChart>
   );
 };

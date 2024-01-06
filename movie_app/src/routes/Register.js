@@ -24,22 +24,22 @@ export default function Register() {
       return;
     }
  
-    // if (userId.length < 5) {
-    //   alert("ID should be at least 5 characters long");
-    //   return;
-    // }
-    // if (userNickname.length < 5) {
-    //   alert("Nickname should be at least 5 characters long");
-    //   return;
-    // }
-    // if (userPwd.length < 6) {
-    //   alert("Password should be at least 6 characters long");
-    //   return;
-    // }
-    // if (!/[A-Z]/.test(userPwd) || !/\d/.test(userPwd)) {
-    //   alert("Password should contain at least one uppercase letter, and one number");
-    //   return;
-    // }
+    if (userId.length < 5) {
+      alert("ID should be at least 5 characters long");
+      return;
+    }
+    if (userNickname.length < 5) {
+      alert("Nickname should be at least 5 characters long");
+      return;
+    }
+    if (userPwd.length < 6) {
+      alert("Password should be at least 6 characters long");
+      return;
+    }
+    if (!/[A-Z]/.test(userPwd) || !/\d/.test(userPwd)) {
+      alert("Password should contain at least one uppercase letter, and one number");
+      return;
+    }
      
     try {
       const response = await fetch('http://localhost:5001/api/register', {

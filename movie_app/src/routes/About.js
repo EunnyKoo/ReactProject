@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles/About.css';
-import koo from "./koo.png";
+import koo from "./styles/koo.png";
 
 export default function About() {
     return (
