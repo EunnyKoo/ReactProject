@@ -101,7 +101,7 @@ const mysql = require("mysql");
 
 const conn = mysql.createPool({
 	host: 'localhost',   
-	user: 'user',                           
+	user: 'root',                           
 	password: '55555!',                     
 	database: 'react_proj',                
 })
