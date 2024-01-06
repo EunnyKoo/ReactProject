@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './styles/MyPage.css';
 import Chart from '../components/Chart';
+import Game from '../components/Game';
+
 
 const MyPage = () => {
   const [monthlySandos, setMonthlySandos] = useState([]);
@@ -51,9 +53,15 @@ const MyPage = () => {
         </div>
         <br />
         <div className="graph-container">
-        <div className="this-month-div">Which sandwich got the highest rating?</div>
+          <div className="this-month-div">Which sandwich got the highest rating?</div>
           <div className="card">
             <Chart data={bestSandos} />
+          </div>
+          <br />
+        </div>
+        <div className="graph-container">
+          <div className="card">
+            <Game />
           </div>
         </div>
       </div>
