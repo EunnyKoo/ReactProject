@@ -99,7 +99,7 @@ const comments = {
 
 const monthlySandos = [
   { id: 1, title: `Favourite Sandwich Moment`, name:'City Oasis', cafeLocation: 'city oasis, Magoknaru, Gangseo-gu, Seoul', summary: `The best sandwich moment of this month was having a sandwich and coffee while making this sandwich blog website. I wanted to make this blog for a really long time so it's like my dream coming true life moment!`, poster: '/sandwich-images/ef.jpg', },
-  { id: 2, title: `Introducing Overseas Sando`, name:'Hong Kong Shake Shack', cafeLocation: 'Shop 4018, Podium Level 4, ifc mall, 8 Finance Street',  summary: `Located at Central Waterfront, ifc is one of Hong Kong's leading business and leisure destinations. With more than 200 stores featuring international premier brands, flagship stores and unique concept stores, ifc mall is the place to go for an extraordinary shopping, dining and entertainment experience. It is not only a hot tourist spot in Hong Kong, but also an iconic world-class shopping mall.`, poster: '/sandwich-images/hawaiianJack.jpeg', },
+  { id: 2, title: `Introducing Overseas Sando`, name:'Detour Hong Kong', cafeLocation: 'Shop 4018, Podium Level 4, ifc mall, 8 Finance Street',  summary: `Located at Central Waterfront, ifc is one of Hong Kong's leading business and leisure destinations. With more than 200 stores featuring international premier brands, flagship stores and unique concept stores, ifc mall is the place to go for an extraordinary shopping, dining and entertainment experience. It is not only a hot tourist spot in Hong Kong, but also an iconic world-class shopping mall.`, poster: '/sandwich-images/detour.jpg', },
 ];
 
 const mysql = require("mysql");
