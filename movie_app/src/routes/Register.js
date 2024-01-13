@@ -52,15 +52,12 @@ export default function Register() {
     
       if (response.ok) {
         const data = await response.json();
-        // 성공(2xx)인 경우에만 모달 열기
         setModalOpen(true);
       } else {
-        // HTTP 상태 코드가 성공(2xx)이 아닌 경우
         try {
           const errorData = await response.json();
           alert(`Registration failed: ${errorData.error || 'Unknown error'}`);
         } catch (error) {
-          // JSON으로 파싱할 수 없는 경우 (HTML 등의 형식)
           alert(`Registration failed: ${response.statusText}`);
         }
       }

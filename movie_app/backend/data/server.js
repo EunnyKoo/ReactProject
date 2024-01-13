@@ -104,11 +104,10 @@ const monthlySandos = [
 
 const mysql = require("mysql");
 
-//학원컴에서는 user:user로 변경하면 됨
 const conn = mysql.createPool({
 	host: 'localhost',   
 	user: 'root',                           
-	password: '55555!',                     
+	password: '비번입력',                     
 	database: 'react_proj',                
 })
 
