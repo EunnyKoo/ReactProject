@@ -12,7 +12,7 @@ import MyPage from './routes/MyPage';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/ReactProject/movie_app">
       <Navigation />
       <Routes>
         <Route path="/" element={<Home />} />
